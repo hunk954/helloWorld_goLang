@@ -9,7 +9,7 @@ VSCode采用 JavaScript 技术，兼容几乎所有流行的操作系统，特�
     ![code](image/1.png)
 ## 二、安装golang
 ### 1、安装
--  使用系统包管理工具安装
+-  使用系统包管理工具安装(此处也卡了我一些时间，因为之前安装源没有配置好。[CentOS7配置阿里源方法](https://www.cnblogs.com/muyunren/p/7221505.html))
 `sudo yum install golang`
 -  检查安装地址
 `rpm -ql golang |more`  
@@ -34,4 +34,37 @@ VSCode采用 JavaScript 技术，兼容几乎所有流行的操作系统，特�
     -  检查配置  
     `go env`  
     ![检查配置](/image/3.png)
--  开始第一个GO语言项目：Hello World
+-  测试程序：Hello World
+    - 创建源代码目录（此处遵循goLang的工作环境规则，在src/github.com/下创建个人目录）
+    `mkdir $GOPATH/src/github.com/user/hello -p`
+    - 使用VSCode创建源代码文件`·hello.go`
+    ```
+    package main
+    import "fmt"
+    func main(){
+        fmt.Println("Hello World!")
+    }
+    ```
+    - 在终端进入到`$GOPATG/src/github.com/user/hello`运行 `go run hello.go`  
+    ![](image/4.png)
+### 3、安装必要的工具和插件
+-  安装Git客户端  
+`sudo yum install git`
+- 安装go的一些工具（主要是VSCode提示的GO语言相关工具无法正常访问下载）
+```
+# 创建文件夹
+mkdir $GOPATH/src/golang.org/x/
+# 下载源码
+go get -d github.com/golang/tools
+# copy 
+cp $GOPATH/src/github.com/golang/tools $GOPATH/src/golang.org/x/ -rf
+```
+-  安装工具包  
+`go install golang.org/x/tools/go/buildutil`
+-  安装运行hello world(此处与前面不同的地方在于前面是运行单个程序，这里是安装项目，生成可执行文件/编译中间文件。**注意路径按照自己实际写**)
+```
+go install github.com/github-user/hello
+hello
+```
+![运行结果](image/5.png)
+## 三、
