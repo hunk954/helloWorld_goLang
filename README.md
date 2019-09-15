@@ -7,3 +7,24 @@ VSCode采用 JavaScript 技术，兼容几乎所有流行的操作系统，特�
  ` rpm -ivh code-1.38.0-1567548134.el7.x86_64.rpm`
 - 成功后在`应用程序`->`编程`中可以看到Visual Studio Code
     ![code](image/1.png)
+## 二、安装golang
+### 1、安装
+-  使用系统包管理工具安装
+`sudo yum install golang`
+-  检查安装地址
+`rpm -ql golang |more`
+![安装地址](image/2.png)
+-  测试安装(可用于在系统中检查是否搭载go语言环境)
+`go version`
+-  结果
+`go version go1.11.5 linux/amd64`
+### 2、设置环境变量
+[go 语言工作空间配置](https://go-zh.org/doc/code.html)
+-  创建工作空间(**注意此处需要退出root模式**，否则$HOME指向为`/root`文件夹，不利于后续操作)
+`mkdir $HOME/gowork`
+-  配置环境变量
+    - 对于CentOS 首先`vim ~/.profile`，之后在文件内添加
+    ```
+    export GOPATH=$gowork
+    export PATH=$PATH:$GOPATH/bin
+    ```
