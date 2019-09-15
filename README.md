@@ -28,3 +28,10 @@ VSCode采用 JavaScript 技术，兼容几乎所有流行的操作系统，特�
     export GOPATH=$gowork
     export PATH=$PATH:$GOPATH/bin
     ```
+    -  此处对GOPATH配置十分重要，也是卡了我较长时间的点。前面如果没有退出root模式，或者没有切换到自己的用户时就很容易出现后续go编译出错。此处区分`GOPATH`、`GOROOT`
+        - ` GOPATH`：其实就是我们的工作环境，里面分为`src`、`pkg`、`bin`，分别存放源代码、编译生成的中间文件、bin编译后的可执行文件。前面配置的`$PATH`其实就是这里的bin文件夹，方便我们后续直接运行可执行文件。
+        - `GOROOT`：其实就是golang的安装路径，安装好了go语言就不要再动了。一般在`/usr/local/go`（一开始弄乱了GOPATH和GOROOT，导致我的GO代码无法执行）
+    -  检查配置  
+    `go env`  
+    ![检查配置](/image/3.png)
+-  开始第一个GO语言项目：Hello World
