@@ -40,7 +40,9 @@ VSCode采用 JavaScript 技术，兼容几乎所有流行的操作系统，特�
     - 使用VSCode创建源代码文件`·hello.go`
     ```
     package main
+
     import "fmt"
+
     func main(){
         fmt.Println("Hello World!")
     }
@@ -67,4 +69,36 @@ go install github.com/github-user/hello
 hello
 ```
 ![运行结果](image/5.png)
-## 三、
+## 三、GO语言学习：包
+-  基本语法
+    - goLang源文件第一个语句必须是
+    ```
+    package 名称
+    ```
+    -  此处的名称即导入该包时使用的默认名称（一般与文件夹名相同），一个包内的所有文件都用相同的包名
+    -  Go的约定是包名为导入路径的最后一个元素：作为 “user/test” 导入的包应命名为 test
+    -  可执行的命令则必须使用`package main`(所以可执行文件所在文件夹中的源文件都用main这个包名)
+-  实践
+    - 结合[测试的相关语法](https://go-zh.org/doc/code.html#包路径)，自己在`/github.com/user/test`创建一个test包
+    ```
+    package test
+
+    import "testing"
+
+    func TestHello(t *testing.T){
+	t.Log("Hello World")
+    }
+    ```
+    -  结合GO测试的语法，运行程序，成果结果如下
+    ```
+    [wangjunhuan@localhost test]$ go test -v
+    === RUN   TestHello
+    --- PASS: TestHello (0.00s)
+    hello_test.go:6: Hello World
+    PASS
+    ok      github.com/user/test    0.007s
+    ```
+
+### 四、实验感想
+本次实验主要是配置GO语言环境以及了解GO语言的基本语法及基本项目的配置。环境配置一直是学习一门新的语言非常重要的一环，环境没配好，程序也无法运行。就像刚接触JAVA时那样，磕磕碰碰难免要捣腾好几回。最重要的主要是弄懂每个路径配的是什么，以及路径是什么。不能直接照搬指南中的代码，有些要根据自己的实际路径来配。GO语言的学习刚刚起步，继续加油！
+
